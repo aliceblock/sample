@@ -2,7 +2,11 @@
 ## Install
 1. Clone this repo
 ```bash
-git clone https://github.com/aliceblock/sample
+git clone https://github.com/aliceblock/sample $GOPATH/github.com/<username>/<directory>
+```
+2. Move project import etc. content
+```bash
+gomove -d $GOPATH/github.com/<username>/<directory> github.com/aliceblock/sample github.com/<username>/<directory>
 ```
 
 ---
