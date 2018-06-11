@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"os"
 
 	"github.com/aliceblock/sample/cmd/server/routes"
@@ -9,18 +8,22 @@ import (
 )
 
 func main() {
-	dataMode := flag.String("mode", "debug", "Data mode {debug|release|dev|prod}")
-	flag.Parse()
+	// dataMode := flag.String("mode", "debug", "Data mode {debug|release|dev|prod}")
+	var dataMode string
+	if dataMode = os.Getenv("ENVIRONMENT"); dataMode == "" {
+		dataMode = "debug"
+	}
+	// flag.Parse()
 
-	switch *dataMode {
+	switch dataMode {
 	case "dev":
-		*dataMode = "debug"
+		dataMode = "debug"
 	case "prod":
-		*dataMode = "release"
+		dataMode = "release"
 	}
 
-	os.Setenv("DATAMODE", *dataMode)
-	if *dataMode == "release" {
+	os.Setenv("DATAMODE", dataMode)
+	if dataMode == "release" {
 		gin.SetMode(gin.ReleaseMode)
 	}
 

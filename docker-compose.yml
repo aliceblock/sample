@@ -1,0 +1,12 @@
+version: '3.3'
+
+services:
+  frontend:
+    build: .
+    image: aliceblock/backend:latest
+    volumes:
+      - type: bind
+        source: .
+        target: /go/src/github.com/aliceblock/sample
+    ports:
+      - 8080:8080
